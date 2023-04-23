@@ -9,8 +9,6 @@
 
 */
 
-using System.Runtime.CompilerServices;
-
 namespace Task_4
 {
     internal class Program
