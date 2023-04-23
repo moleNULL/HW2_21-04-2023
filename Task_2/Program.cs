@@ -35,6 +35,15 @@ namespace Task_2
             Console.ReadLine();
         }
 
+        private static void PrintInitialMessage()
+        {
+            string titleText = "[Task_2] Find an ordinal number of the max digit in the given text:";
+
+            Console.Title = titleText[..^1];
+            Console.CursorLeft = (Console.BufferWidth / 2) - (titleText.Length / 2);
+            Console.WriteLine(titleText);
+        }
+
         private static void PrintDigitInfo(int? ordinalNumberOfMaxDigit)
         {
             if (ordinalNumberOfMaxDigit.HasValue)
@@ -67,15 +76,6 @@ namespace Task_2
             }
 
             return null;
-        }
-
-        private static void PrintInitialMessage()
-        {
-            string titleText = "[Task_2] Find ordinal number of the max digit in the given text:";
-
-            Console.Title = titleText[..^1];
-            Console.CursorLeft = (Console.BufferWidth / 2) - (titleText.Length / 2);
-            Console.WriteLine(titleText);
         }
     }
 }

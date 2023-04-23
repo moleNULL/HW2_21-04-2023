@@ -15,7 +15,7 @@ namespace Task_3
         {
             PrintInitialMessage();
 
-            int booksNumber = 100;
+            const int booksNumber = 100;
             var rand = new Random();
 
             int minBookPagesPossible, maxBookPagesPossible;
@@ -30,7 +30,7 @@ namespace Task_3
                     break;
                 }
 
-                var booksPages = Enumerable.Range(0, booksNumber)
+                var booksPages = Enumerable.Repeat(0, booksNumber)
                                            .Select(_ => rand.Next(minBookPagesPossible, maxBookPagesPossible));
 
                 int thickestBookPages = booksPages.Max();
@@ -40,6 +40,14 @@ namespace Task_3
 
             Console.Write("\nPress any key to continue . . .");
             Console.ReadLine();
+        }
+        private static void PrintInitialMessage()
+        {
+            string titleText = "[Task_3] Find pages of the thickest book among 100 books:";
+
+            Console.Title = titleText[..^1];
+            Console.CursorLeft = (Console.BufferWidth / 2) - (titleText.Length / 2);
+            Console.WriteLine(titleText);
         }
 
         private static void GetMinMaxPagesFromInput(
@@ -100,15 +108,6 @@ namespace Task_3
         private static bool TryParsePageInput(string input, out int pages)
         {
             return int.TryParse(input, out pages) && pages > 0; 
-        }
-
-        private static void PrintInitialMessage()
-        {
-            string titleText = "[Task_3] Find pages of the thickest book among 100 books:";
-
-            Console.Title = titleText[..^1];
-            Console.CursorLeft = (Console.BufferWidth / 2) - (titleText.Length / 2);
-            Console.WriteLine(titleText);
         }
     }
 }
