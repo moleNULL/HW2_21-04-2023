@@ -8,6 +8,8 @@
  */
 
 
+using static System.Net.Mime.MediaTypeNames;
+
 namespace Task_1
 {
     internal class Program
@@ -16,12 +18,22 @@ namespace Task_1
         {
             PrintInitialMessage();
 
-            Console.Write("Enter text: ");
-            string? text = Console.ReadLine();
+            var digitAnalyzer = new DigitAnalyzer();
 
-            var digitAnalyzer = new DigitAnalyzer(text);
+            while (true)
+            {
+                Console.Write("\nEnter text (\"exit\" to exit the loop): ");
+                string? text = Console.ReadLine();
 
-            PrintDigitsInfo(digitAnalyzer);
+                if (text == "exit")
+                {
+                    break;
+                }
+
+                digitAnalyzer.Text = text;
+
+                PrintDigitsInfo(digitAnalyzer);
+            }
 
             Console.Write("\nPress any key to continue . . .");
             Console.ReadLine();
@@ -29,7 +41,7 @@ namespace Task_1
 
         private static void PrintInitialMessage()
         {
-            string titleText = "Task_1:";
+            string titleText = "[Task_1] Count digit sum and max digit in the given text:";
 
             Console.Title = titleText[..^1];
             Console.CursorLeft = (Console.BufferWidth / 2) - (titleText.Length / 2);
@@ -40,12 +52,12 @@ namespace Task_1
         {
             if (digitAnalyzer.HasAnyDigits)
             {
-                Console.WriteLine($"\nSum of digits: {digitAnalyzer.Sum}");
-                Console.WriteLine($"Max digit: {digitAnalyzer.MaxDigit}");
+                Console.WriteLine($"\n\tSum of digits: {digitAnalyzer.Sum}");
+                Console.WriteLine($"\tMax digit: {digitAnalyzer.MaxDigit}");
             }
             else
             {
-                Console.WriteLine("\nThere are no digits in the provided text");
+                Console.WriteLine("\n\tThere are no digits in the provided text");
             }
         }
     }
