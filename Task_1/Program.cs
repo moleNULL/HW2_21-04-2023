@@ -7,9 +7,6 @@
 
  */
 
-
-using static System.Net.Mime.MediaTypeNames;
-
 namespace Task_1
 {
     internal class Program
@@ -84,7 +81,7 @@ namespace Task_1
         }
         public int? MaxDigit { get; private set; }
         public int? Sum { get; private set; }
-        public bool HasAnyDigits => Sum is not null;
+        public bool HasAnyDigits => MaxDigit.HasValue && Sum.HasValue;
 
         private void CalculateDigitsSumAndMaxValue()
         {
@@ -93,12 +90,12 @@ namespace Task_1
 
             if (_text is not null)
             {
-                IEnumerable<char> digits = _text.Where(char.IsDigit);
+                IEnumerable<char> charDigits = _text.Where(char.IsDigit);
 
-                if (digits.Any())
+                if (charDigits.Any())
                 {
-                    Sum = digits.Sum(ch => (int)char.GetNumericValue(ch));
-                    MaxDigit = digits.Max(ch => (int)char.GetNumericValue(ch));
+                    Sum = charDigits.Sum(ch => (int)char.GetNumericValue(ch));
+                    MaxDigit = charDigits.Max(ch => (int)char.GetNumericValue(ch));
                 }
             }
         }
