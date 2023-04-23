@@ -22,7 +22,7 @@ namespace Task_1
                 Console.Write("\nEnter text (\"exit\" to exit the loop): ");
                 string? text = Console.ReadLine();
 
-                if (text == "exit")
+                if (text?.ToLower() == "exit")
                 {
                     break;
                 }
